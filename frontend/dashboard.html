@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - CarPool</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg fixed w-full top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between h-16">
+                <!-- Logo and primary nav -->
+                <div class="flex items-center">
+                    <a href="/" class="flex items-center">
+                        <img src="/frontend/assets/logo.png" alt="CarPool Logo" class="h-10 w-10">
+                        <span class="text-xl font-bold text-blue-600 ml-2">CarPool</span>
+                    </a>
+                    <div class="hidden md:flex items-center ml-10 space-x-8">
+                        <a href="/dashboard.html" class="text-blue-600 font-medium">Dashboard</a>
+                        <a href="/find-rides.html" class="text-gray-700 hover:text-blue-600">Find Rides</a>
+                        <a href="/offer-ride.html" class="text-gray-700 hover:text-blue-600">Offer a Ride</a>
+                    </div>
+                </div>
+
+                <!-- User Menu -->
+                <div class="flex items-center space-x-4">
+                    <div class="relative" id="userMenu">
+                        <button class="flex items-center space-x-2 text-gray-700 hover:text-blue-600 focus:outline-none">
+                            <img src="/api/placeholder/32/32" alt="User Avatar" class="w-8 h-8 rounded-full">
+                            <span class="hidden md:inline-block" id="userName">John Doe</span>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </button>
+                        <div class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 hidden" id="userMenuDropdown">
+                            <a href="/profile.html" class="block px-4 py-2 text-gray-700 hover:bg-blue-50">Profile</a>
+                            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-blue-50">Settings</a>
+                            <hr class="my-1">
+                            <button onclick="auth.logout()" class="block w-full text-left px-4 py-2 text-gray-700 hover:bg-blue-50">
+                                Logout
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="pt-20 pb-12">
+        <div class="max-w-7xl mx-auto px-4">
+            <!-- Welcome Section -->
+            <div class="bg-white rounded-lg shadow-sm p-6 mb-6">
+                <h1 class="text-2xl font-bold text-gray-900" id="welcomeMessage">Welcome back, John!</h1>
+                <p class="text-gray-600">Here's what's happening with your rides</p>
+            </div>
+
+            <!-- Stats Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
+                <div class="bg-white rounded-lg shadow-sm p-6">
+                    <div class="flex items-center">
+                        <div class="p-3 rounded-full bg-blue-100 text-blue-600">
+                            <i class="fas fa-car text-xl"></i>
+                        </div>
+                        <div class="ml-4">
+                            <h2 class="text-gray-600">Active Rides</h2>
+                            <p class="text-2xl font-bold text-gray-900" id="activeRidesCount">0</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow-sm p-6">
+                    <div class="flex items-center">
+                        <div class="p-3 rounded-full bg-green-100 text-green-600">
+                            <i class="fas fa-check-circle text-xl"></i>
+                        </div>
+                        <div class="ml-4">
+                            <h2 class="text-gray-600">Completed Rides</h2>
+                            <p class="text-2xl font-bold text-gray-900" id="completedRidesCount">0</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow-sm p-6">
+                    <div class="flex items-center">
+                        <div class="p-3 rounded-full bg-yellow-100 text-yellow-600">
+                            <i class="fas fa-clock text-xl"></i>
+                        </div>
+                        <div class="ml-4">
+                            <h2 class="text-gray-600">Pending Rides</h2>
+                            <p class="text-2xl font-bold text-gray-900" id="pendingRidesCount">0</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow-sm p-6">
+                    <div class="flex items-center">
+                        <div class="p-3 rounded-full bg-purple-100 text-purple-600">
+                            <i class="fas fa-star text-xl"></i>
+                        </div>
+                        <div class="ml-4">
+                            <h2 class="text-gray-600">Rating</h2>
+                            <p class="text-2xl font-bold text-gray-900" id="userRating">4.8</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Rides Sections -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <!-- Upcoming Rides -->
+                <div class="bg-white rounded-lg shadow-sm p-6">
+                    <h2 class="text-xl font-bold text-gray-900 mb-4">Upcoming Rides</h2>
+                    <div id="upcomingRides" class="space-y-4">
+                        <!-- Rides will be populated here -->
+                    </div>
+                </div>
+
+                <!-- Offered Rides -->
+                <div class="bg-white rounded-lg shadow-sm p-6">
+                    <h2 class="text-xl font-bold text-gray-900 mb-4">Your Offered Rides</h2>
+                    <div id="offeredRides" class="space-y-4">
+                        <!-- Rides will be populated here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Toggle user menu dropdown
+        document.getElementById('userMenu').addEventListener('click', function() {
+            document.getElementById('userMenuDropdown').classList.toggle('hidden');
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(event) {
+            const userMenu = document.getElementById('userMenu');
+            const dropdown = document.getElementById('userMenuDropdown');
+            if (!userMenu.contains(event.target) && !dropdown.classList.contains('hidden')) {
+                dropdown.classList.add('hidden');
+            }
+        });
+
+        // Fetch and display user data when page loads
+        document.addEventListener('DOMContentLoaded', async () => {
+            try {
+                // Fetch user profile
+                const userProfile = await api.request('/user/profile');
+                document.getElementById('userName').textContent = userProfile.fullName;
+                document.getElementById('welcomeMessage').textContent = `Welcome back, ${userProfile.fullName}!`;
+                document.getElementById('userRating').textContent = userProfile.rating || '4.8';
+
+                // Fetch rides statistics
+                const stats = await api.request('/user/rides/stats');
+                document.getElementById('activeRidesCount').textContent = stats.active || 0;
+                document.getElementById('completedRidesCount').textContent = stats.completed || 0;
+                document.getElementById('pendingRidesCount').textContent = stats.pending || 0;
+
+                // Fetch upcoming rides
+                const upcoming = await api.request('/user/rides/upcoming');
+                const upcomingRidesContainer = document.getElementById('upcomingRides');
+                upcomingRidesContainer.innerHTML = upcoming.length ? 
+                    upcoming.map(ride => createRideCard(ride, 'upcoming')).join('') :
+                    '<p class="text-gray-500">No upcoming rides</p>';
+
+                // Fetch offered rides
+                const offered = await api.request('/user/rides/offered');
+                const offeredRidesContainer = document.getElementById('offeredRides');
+                offeredRidesContainer.innerHTML = offered.length ?
+                    offered.map(ride => createRideCard(ride, 'offered')).join('') :
+                    '<p class="text-gray-500">No offered rides</p>';
+
+            } catch (error) {
+                console.error('Error loading dashboard:', error);
+                alert('Failed to load dashboard data');
+            }
+        });
+    </script>
+
+    <script src="/js/app.js"></script>
+</body>
+</html>
