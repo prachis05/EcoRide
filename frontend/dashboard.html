@@ -178,6 +178,48 @@
         });
     </script>
 
+<script>
+    // Desktop dropdown
+    const dropdownButton = document.getElementById('dropdownButton');
+    const dropdownMenu = document.getElementById('dropdownMenu');
+    const dropdownArrow = dropdownButton.querySelector('svg');
+
+    dropdownButton.addEventListener('click', (e) => {
+        e.stopPropagation();
+        dropdownMenu.classList.toggle('active');
+        dropdownArrow.classList.toggle('rotate-180');
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!dropdownButton.contains(e.target) && !dropdownMenu.contains(e.target)) {
+            dropdownMenu.classList.remove('active');
+            dropdownArrow.classList.remove('rotate-180');
+        }
+    });
+
+    // Mobile menu and dropdown
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileDropdownButton = document.getElementById('mobile-dropdown-button');
+    const mobileDropdownMenu = document.getElementById('mobile-dropdown-menu');
+
+    mobileMenuButton.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+    });
+
+    mobileDropdownButton.addEventListener('click', () => {
+        mobileDropdownMenu.classList.toggle('hidden');
+    });
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!mobileMenuButton.contains(e.target) && !mobileMenu.contains(e.target)) {
+            mobileMenu.classList.add('hidden');
+        }
+    });
+</script>
+
     <script src="/js/app.js"></script>
 </body>
 </html>

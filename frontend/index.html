@@ -8,85 +8,88 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 </head>
 <body>
+
     <!--NavBar-->
-    <style>
-        .dropdown:hover .dropdown-menu {
-            display: block;
-        }
-        
-        .mobile-menu {
-            transition: transform 0.3s ease-in-out;
-            transform: translateX(-100%);
-        }
-        
-        .mobile-menu.active {
-            transform: translateX(0);
-        }
-    </style>
-</head>
-<body>
-    <!-- Navigation -->
-    <nav class="bg-white shadow-lg fixed w-full top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4">
-            <div class="flex justify-between h-16">
-                <!-- Logo and primary nav -->
-                <div class="flex items-center">
-                    <a href="/" class="flex items-center">
-                        <img src="assets/logo.png" alt="CarPool Logo" class="h-10 w-10">
-                        <span class="text-xl font-bold text-blue-600 ml-2">EcoRide</span>
-                    </a>
-                    <!-- Desktop Navigation -->
-                    <div class="hidden md:flex items-center ml-10 space-x-8">
-                        <div class="dropdown relative group">
-                            <button class="flex items-center text-gray-700 hover:text-blue-600">
-                                Find Rides
-                                <svg class="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                                </svg>
-                            </button>
-                            <div class="dropdown-menu absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 hidden group-hover:block">
-                                <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-blue-50">Search Rides</a>
-                                <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-blue-50">Popular Routes</a>
-                                <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-blue-50">Last Minute</a>
-                            </div>
+<nav class="bg-white shadow-lg fixed w-full top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4">
+        <div class="flex justify-between h-16">
+            <!-- Logo and primary nav -->
+            <div class="flex items-center">
+                <a href="/frontend/index.html" class="flex items-center">
+                    <img src="assets/logo.png" alt="CarPool Logo" class="h-10 w-10">
+                    <span class="text-xl font-bold text-blue-600 ml-2">EcoRide</span>
+                </a>
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center ml-10 space-x-8">
+                    <div class="dropdown relative">
+                        <button id="dropdownButton" class="flex items-center text-gray-700 hover:text-blue-600">
+                            Find Rides
+                            <svg class="ml-1 w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </button>
+                        <div id="dropdownMenu" class="dropdown-menu absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 hidden">
+                            <a href="search-rides.html" class="block px-4 py-2 text-gray-700 hover:bg-blue-50">Search Rides</a>
+                            <a href="popular-routes.html" class="block px-4 py-2 text-gray-700 hover:bg-blue-50">Popular Routes</a>
                         </div>
-                        <a href="#" class="text-gray-700 hover:text-blue-600">Offer a Ride</a>
-                        <a href="#" class="text-gray-700 hover:text-blue-600">How it Works</a>
-                        <a href="#" class="text-gray-700 hover:text-blue-600">Help</a>
                     </div>
-                </div>
-
-                <!-- Secondary Nav -->
-                <div class="hidden md:flex items-center space-x-4">
-                    <a href="login.html" class="text-gray-700 hover:text-blue-600">Login</a>
-                    <a href="signup.html" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">Sign Up</a>
-                </div>
-
-                <!-- Mobile menu button -->
-                <div class="md:hidden flex items-center">
-                    <button id="mobile-menu-button" class="text-gray-700 hover:text-blue-600">
-                        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                        </svg>
-                    </button>
+                    <a href="offer-ride.html" class="text-gray-700 hover:text-blue-600">Offer a Ride</a>
+                    <a href="#how-it-works" class="text-gray-700 hover:text-blue-600">How it Works</a>
+                    <a href="help.html" class="text-gray-700 hover:text-blue-600">Help</a>
                 </div>
             </div>
-        </div>
 
-        <!-- Mobile menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
-            <div class="px-2 pt-2 pb-3 space-y-1">
-                <a href="#" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded-md">Find Rides</a>
-                <a href="#" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded-md">Offer a Ride</a>
-                <a href="#" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded-md">How it Works</a>
-                <a href="#" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded-md">Help</a>
-                <div class="border-t border-gray-200 pt-2">
-                    <a href="login.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded-md">Login</a>
-                    <a href="signup.html" class="block px-3 py-2 bg-blue-600 text-white rounded-md mt-2">Sign Up</a>
-                </div>
+            <!-- Secondary Nav -->
+            <div class="hidden md:flex items-center space-x-4">
+                <a href="login.html" class="text-gray-700 hover:text-blue-600">Login</a>
+                <a href="signup.html" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">Sign Up</a>
+            </div>
+
+            <!-- Mobile menu button -->
+            <div class="md:hidden flex items-center">
+                <button id="mobile-menu-button" class="text-gray-700 hover:text-blue-600">
+                    <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
             </div>
         </div>
-    </nav>
+    </div>
+
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
+        <div class="px-2 pt-2 pb-3 space-y-1">
+            <button id="mobile-dropdown-button" class="flex items-center w-full px-3 py-2 text-gray-700 hover:bg-blue-50 rounded-md">
+                Find Rides
+                <svg class="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+            </button>
+            <div id="mobile-dropdown-menu" class="hidden pl-4">
+                <a href="search-rides.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded-md">Search Rides</a>
+                <a href="popular-routes.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded-md">Popular Routes</a>
+                <a href="last-minute.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded-md">Last Minute</a>
+            </div>
+            <a href="offer-ride.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded-md">Offer a Ride</a>
+            <a href="how-it-works.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded-md">How it Works</a>
+            <a href="help.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded-md">Help</a>
+            <div class="border-t border-gray-200 pt-2">
+                <a href="login.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded-md">Login</a>
+                <a href="signup.html" class="block px-3 py-2 bg-blue-600 text-white rounded-md mt-2">Sign Up</a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<style>
+    .dropdown-menu.active {
+        display: block;
+    }
+    
+    .rotate-180 {
+        transform: rotate(180deg);
+    }
+</style>
 
     <!-- Hero Section -->
     <section class="bg-gradient-to-r from-blue-600 to-blue-700 text-white">
@@ -100,20 +103,25 @@
                         Join thousands of travelers who trust EcoRide for safe, affordable, and eco-friendly rides across the country.
                     </p>
                     <div class="space-x-4">
-                        <button class="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 transition">
-                            Find a Ride
-                        </button>
-                        <button class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition">
-                            Offer a Ride
-                        </button>
+                        <a href="search-rides.html">
+                            <button class="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 transition">
+                                Find a Ride
+                            </button>
+                        </a>
+                        <a href="offer-ride.html">
+                            <button class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition">
+                                Offer a Ride
+                            </button>
+                        </a>
                     </div>
                 </div>
                 <div class="flex justify-center">
-                    <img src="assets/carpool-bg11.jpg" alt="Carpooling illustration" class="rounded-lg shadow-xl">
+                    <img src="assets/carpool-bg.jpg" alt="Carpooling illustration" class="rounded-lg shadow-xl">
                 </div>
             </div>
         </div>
     </section>
+    
 
     <!-- Benefits Section -->
     <section class="py-20 bg-white">
@@ -152,9 +160,9 @@
     </section>
 
     <!-- How It Works -->
-    <section class="py-20 bg-gray-50">
+    <section class="py-20 bg-gray-50" id="how-it-works">
         <div class="max-w-7xl mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center mb-12">How EcoRide:CarPool Works</h2>
+            <h2 class="text-3xl font-bold text-center mb-12">How EcoRide Works</h2>
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                 <div class="relative">
                     <div class="text-center">
@@ -327,14 +335,39 @@
     </footer>
 
     <script>
-        // Mobile menu toggle
+        // Desktop dropdown
+        const dropdownButton = document.getElementById('dropdownButton');
+        const dropdownMenu = document.getElementById('dropdownMenu');
+        const dropdownArrow = dropdownButton.querySelector('svg');
+    
+        dropdownButton.addEventListener('click', (e) => {
+            e.stopPropagation();
+            dropdownMenu.classList.toggle('active');
+            dropdownArrow.classList.toggle('rotate-180');
+        });
+    
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!dropdownButton.contains(e.target) && !dropdownMenu.contains(e.target)) {
+                dropdownMenu.classList.remove('active');
+                dropdownArrow.classList.remove('rotate-180');
+            }
+        });
+    
+        // Mobile menu and dropdown
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
-
+        const mobileDropdownButton = document.getElementById('mobile-dropdown-button');
+        const mobileDropdownMenu = document.getElementById('mobile-dropdown-menu');
+    
         mobileMenuButton.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
         });
-
+    
+        mobileDropdownButton.addEventListener('click', () => {
+            mobileDropdownMenu.classList.toggle('hidden');
+        });
+    
         // Close mobile menu when clicking outside
         document.addEventListener('click', (e) => {
             if (!mobileMenuButton.contains(e.target) && !mobileMenu.contains(e.target)) {
@@ -342,6 +375,8 @@
             }
         });
     </script>
-    <script src="app.js"></script>
+
+    <script src="app.js"></script> 
+
 </body>
 </html>
