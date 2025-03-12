@@ -26,8 +26,8 @@ db.connect((err) => {
 });
 
 // Routes
-console.log("Loading auth routes...");
-app.use("/api/auth", authRoutes);
+app.use("/api", authRoutes);
+console.log("Rides loading")
 app.use("/api/rides", rideRoutes);
 
 
